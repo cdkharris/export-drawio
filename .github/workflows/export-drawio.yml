@@ -15,6 +15,6 @@ jobs:
       - name: Export drawio files in the current directory
         run: |
           ls *.drawio
-          draw.io --export --format svg .
+          drawio --export --format svg .
         working-directory: ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
