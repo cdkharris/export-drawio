@@ -11,8 +11,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - run: echo "🖥️ The workflow is now ready to export your Drawio files from the runner."
+      - name: Export drawio files in the current directory
         run: |
-          ls ${{ github.workspace }}
+          ls *.drawio
+          draw.io --export --format svg .
+        working-directory: ${{ github.workspace }}/export-drawio
       - run: echo "🍏 This job's status is ${{ job.status }}."
