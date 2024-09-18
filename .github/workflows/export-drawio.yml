@@ -16,5 +16,5 @@ jobs:
         run: |
           ls *.drawio
           draw.io --export --format svg .
-        working-directory: ${{ github.workspace }}/export-drawio
+        working-directory: ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
