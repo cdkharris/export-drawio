@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-amd64-24.7.8.deb
-      - run: sudo apt install ./drawio-amd64-24.7.8.deb
+      - run: wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-x86_64-24.7.8.AppImage 
+      - run: chmod a+x drawio-x86_64-24.7.8.AppImage
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
@@ -15,6 +15,6 @@ jobs:
       - name: Export drawio files in the current directory
         run: |
           ls *.drawio
-          drawio --export --format svg .
+          ./drawio-x86_64-24.7.8.AppImage --export --format svg .
         working-directory: ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
