@@ -4,16 +4,19 @@ on: [push,workflow_dispatch]
 jobs:
   Export-Drawio-Diagrams:
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./apps
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-x86_64-24.7.8.AppImage 
+      - run: wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-x86_64-24.7.8.AppImage
       - run: chmod a+x drawio-x86_64-24.7.8.AppImage
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to export your Drawio files from the runner."
-      - name: Export drawio files in the current directory
+      - name: Export drawio files in the repository
         run: |
-          ls *.drawio
+          ls ${{ github.workspace }}/*.drawio
           ./drawio-x86_64-24.7.8.AppImage --export --format svg ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
