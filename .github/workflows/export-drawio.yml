@@ -3,7 +3,7 @@ run-name: Export .drawio files as SVG
 on: [push,workflow_dispatch]
 jobs:
   Export-Drawio-Diagrams:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-amd64-24.7.8.deb
