@@ -12,6 +12,8 @@ jobs:
         run: |
           wget --quiet https://github.com/jgraph/drawio-desktop/releases/download/v24.7.8/drawio-x86_64-24.7.8.AppImage
           chmod a+x drawio-x86_64-24.7.8.AppImage
+          sudo add-apt-repository universe
+          sudo apt install libfuse2
       - name: Export drawio files in the repository
         run: |
           ls ./*.drawio
