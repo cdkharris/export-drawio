@@ -15,5 +15,5 @@ jobs:
       - name: Export drawio files in the repository
         run: |
           ls ./*.drawio
-          ./drawio-x86_64-24.7.8.AppImage --export --format svg .
+          ./drawio-x86_64-24.7.8.AppImage --appimage-extract --export --format svg .
       - run: echo "🍏 This job's status is ${{ job.status }}."
