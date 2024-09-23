@@ -3,7 +3,7 @@ run-name: Export .drawio files as SVG
 on: [push,workflow_dispatch]
 jobs:
   Export-Drawio-Diagrams:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Check out repository code
