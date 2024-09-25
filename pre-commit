@@ -24,19 +24,19 @@ then
 		cat <<\EOF
 This hook exports drawio diagrams.
 
-You can disable it like so:
+You can disable it: (default: true)
 
   git config hooks.exportdrawio false
 
-Set the format to one of pdf, png, jpg, svg, vsdx, xml like so: (default: svg)
+Set the format to one of pdf, png, jpg, svg, vsdx, xml: (default: svg)
 
   git config hooks.exportdrawioformat pdf
 
-Configure the application like so: (default: macos install location)
+Configure the application: (default: macos install location)
 
   git config hooks.exportdrawioapp /Applications/draw.io.app/Contents/MacOS/draw.io
 
-Quiet this message like so:
+Quiet this message:
 
   git config hooks.exportdrawioverbose false
 
