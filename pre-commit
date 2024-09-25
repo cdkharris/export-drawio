@@ -3,7 +3,7 @@
 # A hook script to export drawio diagrams.
 # Requires draw.io desktop: https://get.diagrams.net/
 #
-# To enable this hook, copy it into .git/hooks.
+# To enable this hook, copy it into .git/hooks and ensure that it is executable
 
 if git rev-parse --verify HEAD >/dev/null 2>&1
 then
