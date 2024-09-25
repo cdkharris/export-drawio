@@ -5,20 +5,13 @@
 #
 # To enable this hook, copy it into .git/hooks and ensure that it is executable
 
-if git rev-parse --verify HEAD >/dev/null 2>&1
-then
-	against=HEAD
-else
-	# Initial commit: diff against an empty tree object
-	against=$(git hash-object -t tree /dev/null)
-fi
-
 # get variables from git config
 exportdrawio=$(git config get --type=bool --default=true hooks.exportdrawio)
 exportdrawioformat=$(git config get --type=bool-or-str --default=svg hooks.exportdrawioformat)
 exportdrawioapp=$(git config get --type=bool-or-str --default=/Applications/draw.io.app/Contents/MacOS/draw.io hooks.exportdrawioapp)
 exportdrawioverbose=$(git config get --type=bool --default=true hooks.exportdrawioverbose)
 
+# get staged drawio files
 drawiofiles=$(git diff-index --name-only HEAD *.drawio)
 
 if [ "$exportdrawio" = "true" ] && [ "$drawiofiles" != "" ]
