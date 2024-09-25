@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# A hook script to export drawio diagrams.
+# Requires draw.io desktop: https://get.diagrams.net/
+#
+# To enable this hook, copy it into .git/hooks.
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+# get variables from git config
+exportdrawio=$(git config get --type=bool --default=true hooks.exportdrawio)
+exportdrawioformat=$(git config get --type=bool-or-str --default=svg hooks.exportdrawioformat)
+exportdrawioapp=$(git config get --type=bool-or-str --default=/Applications/draw.io.app/Contents/MacOS/draw.io hooks.exportdrawioapp)
+exportdrawioverbose=$(git config get --type=bool --default=true hooks.exportdrawioverbose)
+
+drawiofiles=$(git diff-index --name-only HEAD *.drawio)
+
+if [ "$exportdrawio" = "true" ] && [ "$drawiofiles" != "" ]
+then
+	for file in $drawiofiles; do
+		$exportdrawioapp --export --format $exportdrawioformat $file
+	done
+	if [ "$exportdrawioverbose" = "true" ]
+	then
+		cat <<\EOF
+This hook exports drawio diagrams.
+
+You can disable it like so:
+
+  git config hooks.exportdrawio false
+
+Set the format to one of pdf, png, jpg, svg, vsdx, xml like so: (default: svg)
+
+  git config hooks.exportdrawioformat pdf
+
+Configure the application like so: (default: macos install location)
+
+  git config hooks.exportdrawioapp /Applications/draw.io.app/Contents/MacOS/draw.io
+
+Quiet this message like so:
+
+  git config hooks.exportdrawioverbose false
+
+EOF
+	fi
+
+	git add *.$exportdrawioformat
+fi
