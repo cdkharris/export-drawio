@@ -1,2 +1,2 @@
 # export-drawio
-Demonstrates a Github workflow to export Drawio diagrams
+A git hook to export drawio diagrams
