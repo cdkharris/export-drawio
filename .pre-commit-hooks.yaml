@@ -1,0 +1,8 @@
+- id: exportdrawio
+  name: exportdrawio
+  description: Export drawio diagrams
+  entry: ./exportdrawio
+  language: script
+  types: [file]
+  files: '*.drawio'
+  args: [format]
